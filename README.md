@@ -19,9 +19,7 @@ All you need is to open this project at Unity, press the play button, and have f
 
 ### 📸 Screenshots
 
-<img src="./Docs/Images/Screenshot 2024-03-12 at 4.08.16 PM.png" alt="drawing" width="200"/>
-
-<img src="./Docs/Images/Screenshot 2024-03-12 at 4.11.05 PM.png" alt="drawing" width="200"/>
+<img src="./Docs/Images/Screenshot 2024-03-12 at 4.08.16 PM.png" alt="drawing" width="200"/> <img src="./Docs/Images/Screenshot 2024-03-12 at 4.11.05 PM.png" alt="drawing" width="200"/>
 
 ### 📋 TODO
 
