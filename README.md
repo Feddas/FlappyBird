@@ -1,6 +1,6 @@
 # Flappy Bird
 
-**The Flappy Bird game copy using [Unity](https://unity.com).**
+**The Flappy Bird game remake using [Unity](https://unity.com).**
 
 ___
 
