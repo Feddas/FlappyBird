@@ -23,6 +23,8 @@ All you need is to open this project at Unity, press the play button, and have f
 
 <img src="./Docs/Images/Screenshot 2024-03-12 at 4.08.16 PM.png" alt="drawing" width="200"/> <img src="./Docs/Images/Screenshot 2024-03-12 at 4.11.05 PM.png" alt="drawing" width="200"/>
 
+---
+
 ### 📋 TODO
 
 - [x] Follow the step-by-step on the video tutorial.
@@ -31,3 +33,13 @@ All you need is to open this project at Unity, press the play button, and have f
     - [ ] Apple iPhone.
     - [ ] Android.
 - [ ] Add more levels.
+
+---
+
+### 📦 Resources
+
+#### Sprites:
+* [The TileSet](https://www.spriters-resource.com/mobile/flappybird/sheet/59894/)
+
+#### Fonts:
+* [The Flappy Bird Font](https://www.dafont.com/04b-19.font)
