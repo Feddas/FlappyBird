@@ -8,12 +8,16 @@ public class FlyBehavior : MonoBehaviour
     [SerializeField] private float _velocity = 1.5f;
     [SerializeField] private float _rotationSpeed = 10f;
 
-    private Rigidbody2D _rigidbody;
 
-    private void Start()
+    private Rigidbody2D _rigidbody
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
+        get
+        {
+            __rigidbody ??= this.GetComponent<Rigidbody2D>();
+            return __rigidbody;
+        }
     }
+    private Rigidbody2D __rigidbody;
 
     public void OnFlap(InputValue inputValue)
     {
@@ -30,6 +34,13 @@ public class FlyBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        GameManager.instance.GameOver();
+        if (collision.gameObject.tag == "Player")
+        {
+            Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
+        }
+        else
+        {
+            GameManager.instance.GameOver();
+        }
     }
 }
