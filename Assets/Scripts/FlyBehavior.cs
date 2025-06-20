@@ -15,9 +15,9 @@ public class FlyBehavior : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    public void OnFlap(InputValue inputValue)
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (inputValue.isPressed)
         {
             _rigidbody.velocity = Vector2.up * _velocity;
         }
@@ -27,7 +27,6 @@ public class FlyBehavior : MonoBehaviour
     {
         transform.rotation = Quaternion.Euler(0, 0, _rigidbody.velocity.y * _rotationSpeed);
     }
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject _gameOverCanvas;
+    [SerializeField] private UnityEngine.UI.Button _playButton;
 
     public static GameManager instance;
 
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         _gameOverCanvas.SetActive(true);
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(_playButton.gameObject);
+
         Time.timeScale = 0f;
     }
 
