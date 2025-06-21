@@ -8,39 +8,26 @@ public class FlyBehavior : MonoBehaviour
     [SerializeField] private float _velocity = 1.5f;
     [SerializeField] private float _rotationSpeed = 10f;
 
-
-    private Rigidbody2D _rigidbody
+    private new Rigidbody2D rigidbody
     {
         get
         {
-            __rigidbody ??= this.GetComponent<Rigidbody2D>();
-            return __rigidbody;
+            _rigidbody ??= this.GetComponent<Rigidbody2D>();
+            return _rigidbody;
         }
     }
-    private Rigidbody2D __rigidbody;
+    private Rigidbody2D _rigidbody;
 
     public void OnFlap(InputValue inputValue)
     {
         if (inputValue.isPressed)
         {
-            _rigidbody.velocity = Vector2.up * _velocity;
+            rigidbody.velocity = Vector2.up * _velocity;
         }
     }
 
     private void FixedUpdate()
     {
-        transform.rotation = Quaternion.Euler(0, 0, _rigidbody.velocity.y * _rotationSpeed);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
-        }
-        else
-        {
-            GameManager.instance.GameOver();
-        }
+        transform.rotation = Quaternion.Euler(0, 0, rigidbody.velocity.y * _rotationSpeed);
     }
 }

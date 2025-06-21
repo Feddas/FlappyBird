@@ -8,7 +8,11 @@ public class PipeIncreaseScore : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            Score.instance.UpdateScore();
+            var playerHealth = collider.gameObject.GetComponentInChildren<PlayerHealth>();
+            if (playerHealth != null && playerHealth.IsAlive)
+            {
+                Score.instance.UpdateScore();
+            }
         }
     }
 }
