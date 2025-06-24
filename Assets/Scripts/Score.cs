@@ -41,5 +41,8 @@ public class Score : MonoBehaviour
         _score++;
         _currentScoreText.text = _score.ToString();
         UpdateHighScore();
+
+        if (Time.timeScale < 1)
+            Time.timeScale += 0.05f;
     }
 }
