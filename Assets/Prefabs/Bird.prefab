@@ -74,12 +74,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -1674921007, guid: 86c9e8e7c58684a4c942fc2e35a4cff9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
+  m_Sprite: {fileID: 1804280467, guid: dd53b6a07c218734a86af81983b33f46, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 0.17, y: 0.12}
+  m_Size: {x: 0.21, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -186,7 +186,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 0.17, y: 0.12}
+  m_Size: {x: 0.21, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -331,7 +331,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f8fc9c6f6d34444a88bb6634b00810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPlayers: 9
+  animators:
+  - {fileID: 9100000, guid: eb20d2b8b82c649498950af987243ca2, type: 2}
+  - {fileID: 9100000, guid: c05a7a5368481d54cab48b59130a0e17, type: 2}
+  - {fileID: 9100000, guid: 3a14a993fb66f084ab3c399810868bd5, type: 2}
+  - {fileID: 9100000, guid: 481d36082c69944d1a754a7939e47539, type: 2}
 --- !u!114 &-4193559327974046322
 MonoBehaviour:
   m_ObjectHideFlags: 0
