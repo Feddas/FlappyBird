@@ -30,4 +30,21 @@ public class PlayerCollisions : MonoBehaviour
             health.Kill();
         }
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        // player will fall through the ground if resurrected while inside it
+        if (collision.gameObject.name == "Ground")
+        {
+            //Debug.Log(collision.gameObject.name + " stuck " + this.name);
+            moveTowards00(0.01f);
+        }
+    }
+
+    /// <param name="distance"> How many units to move towards world origin, (0, 0, 0)</param>
+    private void moveTowards00(float distance)
+    {
+        Vector3 delta = transform.position.normalized * -distance;
+        transform.position += delta;
+    }
 }
