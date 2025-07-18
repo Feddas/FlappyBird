@@ -14,8 +14,7 @@
 - Keyboard: Left Ctrl, Spacebar, Right Ctrl/Enter, Numpad enter
 - Gamepad: D-Pad down/Left Trigger, Button South/Right Trigger
 - Mouse: Left click
-- (TODO: Mobile: Corners of the screen)
-
+- Mobile: Corners of the screen (Tap to show controls, double tap to hide)
 
 # 👩🏽‍💻 Running this project in a Unity Editor
 
