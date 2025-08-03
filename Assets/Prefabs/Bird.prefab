@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 8489751161426336244}
   - component: {fileID: -4193559327974046322}
   - component: {fileID: 2067021500891049225}
+  - component: {fileID: 5285213931874076725}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Player
@@ -332,9 +333,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animators:
-  - {fileID: 9100000, guid: eb20d2b8b82c649498950af987243ca2, type: 2}
-  - {fileID: 9100000, guid: c05a7a5368481d54cab48b59130a0e17, type: 2}
-  - {fileID: 9100000, guid: 3a14a993fb66f084ab3c399810868bd5, type: 2}
+  - {fileID: 22100000, guid: 30c92cc72283a8349b755a90d3fac67e, type: 2}
+  - {fileID: 22100000, guid: 1608c3deb1f6630498fb41ff175b0de5, type: 2}
+  - {fileID: 22100000, guid: ccf480af662c26544a8f8abaf6af10b2, type: 2}
   - {fileID: 9100000, guid: 481d36082c69944d1a754a7939e47539, type: 2}
 --- !u!114 &-4193559327974046322
 MonoBehaviour:
@@ -361,3 +362,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc18585c59fb2054892e1b3d1d3d859a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5285213931874076725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4747890356449916157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d44661632cf23242b819547b893d07b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minInvulnerableHeight: -0.6
