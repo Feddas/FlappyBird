@@ -18,6 +18,7 @@ public class FlyBehavior : MonoBehaviour
     }
     private Rigidbody2D _rigidbody;
 
+    /// <summary> This method called by PlayerInput component </summary>
     public void OnFlap(InputValue inputValue)
     {
         if (inputValue.isPressed)
