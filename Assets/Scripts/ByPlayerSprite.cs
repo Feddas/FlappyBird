@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,7 +36,9 @@ public class ByPlayerSprite : MonoBehaviour
 
     private void Start()
     {
-        animator.runtimeAnimatorController = animators[playerInput.playerIndex % animators.Count]; // re-use animators if there are more players than animators
-        this.gameObject.name += playerInput.playerIndex;
+        var schemeIndex = playerInput.actions.controlSchemes
+            .IndexOf(s => s.name.Equals(playerInput.currentControlScheme));
+        animator.runtimeAnimatorController = animators[schemeIndex % animators.Count]; // re-use animators if there are more schemes than animators
+        this.gameObject.name += playerInput.playerIndex + "c" + schemeIndex;
     }
 }
