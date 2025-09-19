@@ -8,7 +8,8 @@ public class Score : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _currentScoreText;
     [SerializeField] private TextMeshProUGUI _highScoreText;
 
-    private int _score;
+    public int CurrentScore { get { return score; } }
+    private int score;
 
     public static Score instance;
 
@@ -18,28 +19,33 @@ public class Score : MonoBehaviour
         {
             instance = this;
         }
+        else
+        {
+            Debug.LogError("Singleton violation: " + instance.name + " & " + this.name);
+            Destroy(this);
+        }
     }
 
     private void Start()
     {
-        _currentScoreText.text = _score.ToString();
+        _currentScoreText.text = score.ToString();
         _highScoreText.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
         UpdateHighScore();
     }
 
     private void UpdateHighScore()
     {
-        if (_score > PlayerPrefs.GetInt("HighScore"))
+        if (score > PlayerPrefs.GetInt("HighScore"))
         {
-            PlayerPrefs.SetInt("HighScore", _score);
-            _highScoreText.text = _score.ToString();
+            PlayerPrefs.SetInt("HighScore", score);
+            _highScoreText.text = score.ToString();
         }
     }
 
     public void UpdateScore()
     {
-        _score++;
-        _currentScoreText.text = _score.ToString();
+        score++;
+        _currentScoreText.text = score.ToString();
         UpdateHighScore();
 
         if (Time.timeScale < 1)

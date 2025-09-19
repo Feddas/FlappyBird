@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        // TODO: if tutorial, don't activate _gameOverCanvas, Just RestartGame with current tutorial step
         _gameOverCanvas.SetActive(true);
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(_playButton.gameObject);
 
