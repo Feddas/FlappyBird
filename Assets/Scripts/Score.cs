@@ -42,13 +42,25 @@ public class Score : MonoBehaviour
         }
     }
 
-    public void UpdateScore()
+    public void IncrementScore()
     {
-        score++;
+        setScore(++score);
+    }
+
+    public void ResetScore()
+    {
+        setScore(0);
+    }
+
+    private void setScore(int newScore)
+    {
+        score = newScore;
         _currentScoreText.text = score.ToString();
-        UpdateHighScore();
 
         if (Time.timeScale < 1)
-            Time.timeScale += 0.05f;
+        {
+            var rampTo1sAt10Points = score * (1 - GameManager.TimeScaleAtStart) / 10;
+            Time.timeScale = GameManager.TimeScaleAtStart + rampTo1sAt10Points;
+        }
     }
 }

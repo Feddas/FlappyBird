@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    // Start the game at half speed. (speed reaches 1 as score increments)
+    public const float TimeScaleAtStart = 0.5f;
+
     [SerializeField] private GameObject _gameOverCanvas;
     [SerializeField] private UnityEngine.UI.Button _playButton;
 
@@ -17,12 +18,12 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
 
-        Time.timeScale = .5f;
+        Time.timeScale = TimeScaleAtStart;
     }
 
     public void GameOver()
     {
-        // TODO: if tutorial, don't activate _gameOverCanvas, Just RestartGame with current tutorial step
+        // TODO: CrazyGames branch
         _gameOverCanvas.SetActive(true);
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(_playButton.gameObject);
 
