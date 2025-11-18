@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialId: 2
+  dynamicTutorialText: 0
   tutorialText: Flap each member of your flock individually.
 --- !u!114 &-5205423620280284906
 MonoBehaviour:
@@ -140,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialId: 3
+  dynamicTutorialText: 0
   tutorialText: Revive other members of the flock by flying over to them twice.
 --- !u!1101 &-3971256228888047042
 AnimatorStateTransition:
@@ -313,6 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialId: 1
+  dynamicTutorialText: 1
   tutorialText: Use your join button to flap. Flap to go between thorns without touching
     them.
 --- !u!1107 &3931131191667845323

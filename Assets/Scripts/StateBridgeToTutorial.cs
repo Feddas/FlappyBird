@@ -18,6 +18,11 @@ public class StateBridgeToTutorial : StateMachineGameObject<StateBridgeToTutoria
 
     // void Update() { }
 
+    private void OnDestroy()
+    {
+        TutorialManager.OnFinishedTutorial -= TutorialManager_OnFinishedTutorial;
+    }
+
     private void TutorialManager_OnFinishedTutorial(int tutorialId)
     {
         animator.SetInteger("TutorialsFinished", tutorialId); // Send information to let Animator determine game state.

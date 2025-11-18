@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
+    public event Action OnPlayerJoin;
+
     private void Awake()
     {
         if (instance == null)
@@ -19,6 +22,15 @@ public class GameManager : MonoBehaviour
         }
 
         Time.timeScale = TimeScaleAtStart;
+    }
+
+    /// <summary> invoked by PlayerInputManager </summary>
+    public void OnPlayerJoined()
+    {
+        if (OnPlayerJoin != null)
+        {
+            OnPlayerJoin();
+        }
     }
 
     public void GameOver()
