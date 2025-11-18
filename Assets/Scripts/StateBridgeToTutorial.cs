@@ -8,25 +8,18 @@ public class StateBridgeToTutorial : StateMachineGameObject<StateBridgeToTutoria
     public TextMeshProUGUI TutorialText;
     public TutorialManager TutorialManager;
 
-    [Header("readonly")]
-    [SerializeField]
-    private int currentTutorial = 1;
-
-    void Start()
+    protected override void Awake()
     {
-        TutorialManager.OnNextTutorial += TutorialManager_OnNextTutorial;
-    }
+        base.Awake();
 
-    private void TutorialManager_OnNextTutorial()
-    {
-        SetTutorialsFinished(currentTutorial);
-        currentTutorial++;
+        // Note: Done in Awake() because TutorialManager may raise this event on Start()
+        TutorialManager.OnFinishedTutorial += TutorialManager_OnFinishedTutorial;
     }
 
     // void Update() { }
 
-    public void SetTutorialsFinished(int count)
+    private void TutorialManager_OnFinishedTutorial(int tutorialId)
     {
-        animator.SetInteger("TutorialsFinished", count); // Send information to let the Animator determine game state.
+        animator.SetInteger("TutorialsFinished", tutorialId); // Send information to let Animator determine game state.
     }
 }

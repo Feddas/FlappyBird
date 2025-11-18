@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class StateChangesTutorial : StateMachineAnimatorState<StateBridgeToTutorial>
 {
-    [SerializeField] private int tutorialId = 0;
-    [SerializeField] private string tutorialText = null;
+    [SerializeField]
+    private int tutorialId = 0;
+
+    [TextArea]
+    [SerializeField]
+    private string tutorialText = null;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override protected void OnStateEntered()

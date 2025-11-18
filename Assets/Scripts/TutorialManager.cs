@@ -1,24 +1,27 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
-    const string PlayerPrefsTutorialKey = "HasCompletedTutorial";
+    const string PlayerPrefsTutorialKey = "TutorialsFinished";
 
     public GameObject Scores;
-    public event Action OnNextTutorial;
+    public event Action<int> OnFinishedTutorial;
 
-    private Action CurrentTutorial;
+    public int CurrentTutorialId { get; private set; }
 
-    void Awake()
+    void Start()
     {
-        bool hasCompletedTutorial = PlayerPrefs.HasKey(PlayerPrefsTutorialKey) && PlayerPrefs.GetInt(PlayerPrefsTutorialKey) == 1;
-
-        if (hasCompletedTutorial)
+        int completedTutorialId = 0;
+        if (PlayerPrefs.HasKey(PlayerPrefsTutorialKey))
         {
-            Destroy(this.gameObject);
+            completedTutorialId = PlayerPrefs.GetInt(PlayerPrefsTutorialKey);
+        }
+        bool hasStartedTutorial = completedTutorialId > 0;
+
+        if (hasStartedTutorial && OnFinishedTutorial != null)
+        {
+            OnFinishedTutorial(completedTutorialId);
         }
         else
         {
@@ -28,24 +31,30 @@ public class TutorialManager : MonoBehaviour
 
     void Update()
     {
-        if (CurrentTutorial != null)
-        {
-            CurrentTutorial();
-        }
+        DoTutorial(CurrentTutorialId);
     }
 
+    /// <summary> Sync's Animator's tutorialId with the game scene. This function should only be called by the current Animator state's StateMachineBehaviour. </summary>
     public void SetCurrentTutorial(int tutorialId)
+    {
+        CurrentTutorialId = tutorialId;
+    }
+
+    private void DoTutorial(int tutorialId)
     {
         switch (tutorialId)
         {
+            case 0:
+                // do nothing
+                break;
             case 1:
-                CurrentTutorial = DoTutorial1;
+                DoTutorial1();
                 break;
             case 2:
-                CurrentTutorial = DoTutorial2;
+                DoTutorial2();
                 break;
             case 3:
-                CurrentTutorial = DoTutorial3;
+                DoTutorial3();
                 break;
             default:
                 FinishTutorial();
@@ -53,28 +62,28 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    public void DoTutorial1()
+    private void DoTutorial1()
     {
         if (Score.instance.CurrentScore >= 2)
         {
             // TODO: reset game and score to 0
 
             Debug.Log("TODO: Go to step 2 of the tutorial:");
-            if (OnNextTutorial != null)
+            if (OnFinishedTutorial != null)
             {
-                OnNextTutorial();
+                OnFinishedTutorial(CurrentTutorialId);
             }
             // step 2 is: Flap each member of your flock individually. Reset: if any player dies. Pass: all members make it through 2 gates.
         }
     }
 
-    public void DoTutorial2()
+    private void DoTutorial2()
     { }
 
-    public void DoTutorial3()
+    private void DoTutorial3()
     { }
 
-    public void FinishTutorial()
+    private void FinishTutorial()
     {
         // TODO: PlayerPrefs.SetInt(PlayerPrefsTutorialKey, 1);
         Destroy(this.gameObject);
