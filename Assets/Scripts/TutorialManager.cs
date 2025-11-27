@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -68,7 +70,6 @@ public class TutorialManager : MonoBehaviour
     {
         if (Score.instance.CurrentScore >= 2)
         {
-            // TODO: reset game and score to 0
             Score.instance.ResetScore();
 
             if (OnFinishedTutorial != null)
@@ -78,19 +79,62 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    // step 2 is: Flap each member of your flock individually. Reset: if any player dies. Pass: all members make it through 2 gates.
+    // step 2 is: Revive other members of the flock by flying over to them twice. [gates removed] Pass: NPC at top, middle, and bottom are all revived.
     private void DoTutorial2()
     {
-        Debug.Log("TODO: Step 2 of the tutorial:");
+        Debug.Log("TODO: implement DoTutorial2");
+
+        // Move to next tutorial
+        Score.instance.ResetScore();
+        if (OnFinishedTutorial != null)
+        {
+            OnFinishedTutorial(CurrentTutorialId);
+        }
     }
 
-    // step 3 is: Revive other members of the flock by flying over to them twice. [gates removed] Pass: NPC at top, middle, and bottom are all revived.
+    // step 3 is: Flap each member of your flock individually. Reset: if any player dies. Pass: all members make it through 2 gates.
     private void DoTutorial3()
-    { }
+    {
+        int playersActive = PlayerInput.all.Count;
+        if (playersActive < 2)
+        {
+            // Debug.Log("Need at least 2 players for this Tutorial step.");
+            Score.instance.ResetScore();
+            return;
+        }
 
-    // step 4 is: Display "Tutorial Finished". Set HasCompletedTutorial to true. Load 04FlockPlay.
+        int playersAlive = PlayerInput.all.Count(p => isAlive(p));
+        int score = Score.instance.CurrentScore;
+        if (playersAlive < playersActive)
+        {
+            // All players in the flock need to stay alive
+            Score.instance.ResetScore();
+        }
+        else
+        {
+            if (Score.instance.CurrentScore >= 2 * playersActive)
+            {
+                // Debug.Log($"{playersActive}:{playersAlive} TUTORIAL 3 FINISHED Score:{score}");
+                Score.instance.ResetScore();
+                OnFinishedTutorial?.Invoke(CurrentTutorialId);
+            }
+            else
+            {
+                // Debug.Log($"{playersActive}:{playersAlive} progress... Score:{score}");
+            }
+        }
+    }
+
+    private bool isAlive(PlayerInput player)
+    {
+        var health = player.GetComponentInChildren<PlayerHealth>();
+        return health != null && health.IsAlive;
+    }
+
+    // step 4 is: Set HasCompletedTutorial to true.
     private void FinishTutorial()
     {
+        Debug.Log($"TUTORIAL FINISHED!");
         // TODO: PlayerPrefs.SetInt(PlayerPrefsTutorialKey, 1);
         Destroy(this.gameObject);
     }

@@ -43,10 +43,14 @@ public class StateChangesTutorial : StateMachineAnimatorState<StateBridgeToTutor
         {
         }
 
+        // memory cleanup
         if (dynamicTutorialText && GameManager.instance != null)
         {
             GameManager.instance.OnPlayerJoin -= GameManager_OnPlayerJoin;
         }
+
+        // "-" flags this tutorial as completed
+        stateMachine.TutorialManager.SetCurrentTutorial(-1 * tutorialId);
     }
 
     private void GameManager_OnPlayerJoin()
