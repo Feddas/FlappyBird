@@ -7,6 +7,13 @@
       "dependencies": {},
       "hash": "6ab826a90d19b48dc3075f5dae759d9b8530cd03"
     },
+    "com.feddas.librarysf": {
+      "version": "https://github.com/Feddas/upm.git?path=/Assets/LibrarySf#6ab826a90d19b48dc3075f5dae759d9b8530cd03",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6ab826a90d19b48dc3075f5dae759d9b8530cd03"
+    },
     "com.unity.2d.animation": {
       "version": "9.1.0",
       "depth": 1,

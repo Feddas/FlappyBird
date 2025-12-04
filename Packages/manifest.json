@@ -1,6 +1,7 @@
 {
   "dependencies": {
-  "com.feddas.animatorstatemachine": "https://github.com/Feddas/upm.git?path=/Assets/AnimatorStateMachine#6ab826a90d19b48dc3075f5dae759d9b8530cd03",
+    "com.feddas.animatorstatemachine": "https://github.com/Feddas/upm.git?path=/Assets/AnimatorStateMachine#6ab826a90d19b48dc3075f5dae759d9b8530cd03",
+    "com.feddas.librarysf": "https://github.com/Feddas/upm.git?path=/Assets/LibrarySf#6ab826a90d19b48dc3075f5dae759d9b8530cd03",
     "com.unity.collab-proxy": "2.3.1",
     "com.unity.feature.2d": "2.0.0",
     "com.unity.ide.rider": "3.0.28",
