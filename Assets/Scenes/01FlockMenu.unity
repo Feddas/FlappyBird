@@ -728,7 +728,7 @@ MonoBehaviour:
     m_SceneName: 02FlockPick
   onTutorialNotFinished:
     m_SceneAsset: {fileID: 102900000, guid: 8c9cfa26abfee488c85f1582747f6a02, type: 3}
-    m_SceneName: 04FlockPlay
+    m_SceneName: 03FlockPlay
   forceTutorialAtStart: 0
   forceTutorialFinished: 0
 --- !u!4 &1433136914
