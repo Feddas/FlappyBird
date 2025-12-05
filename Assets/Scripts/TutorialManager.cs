@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class TutorialManager : MonoBehaviour
 {
-    const string PlayerPrefsTutorialKey = "TutorialsFinished";
+    public const string PlayerPrefsTutorialKey = "TutorialsFinished";
 
     public GameObject Scores;
     public event Action<int> OnFinishedTutorial;
@@ -20,7 +20,12 @@ public class TutorialManager : MonoBehaviour
             completedTutorialId = PlayerPrefs.GetInt(PlayerPrefsTutorialKey);
         }
         bool hasStartedTutorial = completedTutorialId > 0;
+        bool hasFinishedTutorials = completedTutorialId > 2;
 
+        if (hasFinishedTutorials)
+        {
+            Destroy(this.gameObject);
+        }
         if (hasStartedTutorial && OnFinishedTutorial != null)
         {
             OnFinishedTutorial(completedTutorialId);
@@ -65,17 +70,11 @@ public class TutorialManager : MonoBehaviour
     }
 
     // step 1 is: Use your join button to flap. Flap to go between thorns without touching them. Pass: at least one player makes it through 2 gates.
-    // TODO: query all active players to replace "Use your join button" with "Use [player 1 bind]/[player 2 bind]"
     private void DoTutorial1()
     {
         if (Score.instance.CurrentScore >= 2)
         {
-            Score.instance.ResetScore();
-
-            if (OnFinishedTutorial != null)
-            {
-                OnFinishedTutorial(CurrentTutorialId);
-            }
+            finishedCurrentStepOfTutorial();
         }
     }
 
@@ -84,12 +83,7 @@ public class TutorialManager : MonoBehaviour
     {
         Debug.Log("TODO: implement DoTutorial2");
 
-        // Move to next tutorial
-        Score.instance.ResetScore();
-        if (OnFinishedTutorial != null)
-        {
-            OnFinishedTutorial(CurrentTutorialId);
-        }
+        finishedCurrentStepOfTutorial();
     }
 
     // step 3 is: Flap each member of your flock individually. Reset: if any player dies. Pass: all members make it through 2 gates.
@@ -115,8 +109,7 @@ public class TutorialManager : MonoBehaviour
             if (Score.instance.CurrentScore >= 2 * playersActive)
             {
                 // Debug.Log($"{playersActive}:{playersAlive} TUTORIAL 3 FINISHED Score:{score}");
-                Score.instance.ResetScore();
-                OnFinishedTutorial?.Invoke(CurrentTutorialId);
+                finishedCurrentStepOfTutorial();
             }
             else
             {
@@ -125,17 +118,32 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    private bool isAlive(PlayerInput player)
-    {
-        var health = player.GetComponentInChildren<PlayerHealth>();
-        return health != null && health.IsAlive;
-    }
-
     // step 4 is: Set HasCompletedTutorial to true.
     private void FinishTutorial()
     {
         Debug.Log($"TUTORIAL FINISHED!");
-        // TODO: PlayerPrefs.SetInt(PlayerPrefsTutorialKey, 1);
         Destroy(this.gameObject);
+    }
+
+    /// <summary> Move to next tutorial </summary>
+    private void finishedCurrentStepOfTutorial()
+    {
+        // cleanup for next tutorial or game
+        Score.instance.ResetScore();
+
+        // save progress
+        PlayerPrefs.SetInt(TutorialManager.PlayerPrefsTutorialKey, CurrentTutorialId);
+
+        // notify animator
+        if (OnFinishedTutorial != null)
+        {
+            OnFinishedTutorial(CurrentTutorialId);
+        }
+    }
+
+    private bool isAlive(PlayerInput player)
+    {
+        var health = player.GetComponentInChildren<PlayerHealth>();
+        return health != null && health.IsAlive;
     }
 }
