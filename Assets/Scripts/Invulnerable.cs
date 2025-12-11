@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -32,13 +31,27 @@ public class Invulnerable : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(InvulnerableMinHeight());
+        StartCoroutine(invulnerableMinHeight());
+    }
+
+    /// <summary> Forces back to the Invulnerable state. </summary>
+    public void Trigger()
+    {
+        StartCoroutine(trigger());
+    }
+
+    /// <returns> when no longer isInvulnerable </returns>
+    private IEnumerator trigger()
+    {
+        animator.SetTrigger("TriggerInvulnerable");
+        yield return new WaitUntil(() => isInvulnerable());
+        yield return invulnerableMinHeight(); // wait until no longer isInvulnerable
     }
 
     /// <summary> Prevents the player from falling through the ground while invulnerable.
     /// Assumes the player starts in the "Invulnerable" State.
     /// Sets a min height for the player during the first time they are in that state. </summary>
-    private IEnumerator InvulnerableMinHeight()
+    private IEnumerator invulnerableMinHeight()
     {
         while (isInvulnerable())
         {

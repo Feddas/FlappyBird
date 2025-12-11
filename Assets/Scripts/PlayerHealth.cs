@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -17,6 +15,10 @@ public class PlayerHealth : MonoBehaviour
     [Tooltip("Reference to the Rigidbody at the root of the player")]
     [SerializeField] private new Rigidbody2D rigidbody;
 
+    [Tooltip("Manages invulnerable state")]
+    [SerializeField] private Invulnerable invulnerable;
+
+    /// <summary> The skull. Shows how un-revived the player is. </summary>
     private SpriteRenderer spriteRenderer
     {
         get
@@ -36,7 +38,7 @@ public class PlayerHealth : MonoBehaviour
         revived = 0f;
         spriteRenderer.enabled = true;
         rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
-        OnValidate();
+        Dirty();
 
         // check if game over
         bool allPlayersDead = UnityEngine.InputSystem.PlayerInput.all.All(p => p.GetComponentInChildren<PlayerHealth>().IsDead);
@@ -55,7 +57,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         revived += percent;
-        OnValidate();
+        Dirty();
     }
 
     private void Start()
@@ -64,6 +66,12 @@ public class PlayerHealth : MonoBehaviour
     }
 
     private void OnValidate()
+    {
+        Dirty();
+    }
+
+    /// <summary> Redraw sprite to represent current health (revived) state </summary>
+    private void Dirty()
     {
         // guard clause: Start() hasn't run
         if (initialSpriteSize == Vector2.zero)
@@ -75,6 +83,7 @@ public class PlayerHealth : MonoBehaviour
         {
             spriteRenderer.enabled = false;
             rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
+            invulnerable.Trigger();
         }
         else // player is dead
         {

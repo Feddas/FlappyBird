@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   revived: 1
   rigidbody: {fileID: 8136785838831754251}
+  invulnerable: {fileID: 5285213931874076725}
 --- !u!1 &4747890356449916157
 GameObject:
   m_ObjectHideFlags: 0
