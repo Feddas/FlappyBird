@@ -8,6 +8,7 @@ public class TutorialManager : MonoBehaviour
     public const string PlayerPrefsTutorialKey = "TutorialsFinished";
 
     public GameObject Scores;
+    public TutorialRevive TutorialRevive;
     public event Action<int> OnFinishedTutorial;
 
     public int CurrentTutorialId { get; private set; }
@@ -81,9 +82,10 @@ public class TutorialManager : MonoBehaviour
     // step 2 is: Revive other members of the flock by flying over to them twice. [gates removed] Pass: NPC at top, middle, and bottom are all revived.
     private void DoTutorial2()
     {
-        Debug.Log("TODO: implement DoTutorial2");
-
-        finishedCurrentStepOfTutorial();
+        if (TutorialRevive.IsFlockFullyRevived())
+        {
+            finishedCurrentStepOfTutorial();
+        }
     }
 
     // step 3 is: Flap each member of your flock individually. Reset: if any player dies. Pass: all members make it through 2 gates.
@@ -122,6 +124,7 @@ public class TutorialManager : MonoBehaviour
     private void FinishTutorial()
     {
         Debug.Log($"TUTORIAL FINISHED!");
+        Scores.SetActive(true);
         Destroy(this.gameObject);
     }
 

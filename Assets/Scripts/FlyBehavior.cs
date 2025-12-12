@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody))]
 public class FlyBehavior : MonoBehaviour
 {
     [SerializeField] private float _velocity = 1.5f;

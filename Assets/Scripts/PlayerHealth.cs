@@ -37,7 +37,10 @@ public class PlayerHealth : MonoBehaviour
         // kill this player
         revived = 0f;
         spriteRenderer.enabled = true;
-        rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+        if (rigidbody != null)
+        {
+            rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
         Dirty();
 
         // check if game over
@@ -82,7 +85,10 @@ public class PlayerHealth : MonoBehaviour
         if (revived >= 1) // player is alive
         {
             spriteRenderer.enabled = false;
-            rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
+            if (rigidbody != null)
+            {
+                rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
+            }
             invulnerable.Trigger();
         }
         else // player is dead
