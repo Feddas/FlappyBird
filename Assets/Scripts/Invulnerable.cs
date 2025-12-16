@@ -29,8 +29,11 @@ public class Invulnerable : MonoBehaviour
     [SerializeField]
     private float minInvulnerableHeight = -0.6f;
 
-    void Start()
+    private IEnumerator Start()
     {
+        // handle Unity's bug "UnassignedReferenceException: The variable '' has not been assigned." https://discussions.unity.com/t/the-variable-has-not-been-assigned-but-it-has/94274/11
+        yield return new WaitUntil(() => animator != null);
+
         StartCoroutine(invulnerableMinHeight());
     }
 

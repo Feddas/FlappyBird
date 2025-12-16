@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -63,8 +64,11 @@ public class PlayerHealth : MonoBehaviour
         Dirty();
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        // handle Unity's bug "UnassignedReferenceException: The variable '' has not been assigned." https://discussions.unity.com/t/the-variable-has-not-been-assigned-but-it-has/94274/11
+        yield return new WaitUntil(() => spriteRenderer != null);
+
         initialSpriteSize = spriteRenderer.size;
     }
 
