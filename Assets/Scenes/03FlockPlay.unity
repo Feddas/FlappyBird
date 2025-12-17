@@ -1241,7 +1241,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Scores: {fileID: 1243825501}
-  TutorialRevive: {fileID: 1971858502}
 --- !u!4 &1015576261
 Transform:
   m_ObjectHideFlags: 0
@@ -1367,6 +1366,7 @@ MonoBehaviour:
   GameOverCanvas: {fileID: 2006927064}
   TutorialText: {fileID: 1947000885}
   TutorialManager: {fileID: 1015576260}
+  TutorialRevive: {fileID: 1971858502}
 --- !u!95 &1058918171
 Animator:
   serializedVersion: 5
@@ -2167,7 +2167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1971858501
 Transform:
   m_ObjectHideFlags: 0

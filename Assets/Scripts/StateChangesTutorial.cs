@@ -12,9 +12,22 @@ public class StateChangesTutorial : StateMachineAnimatorState<StateBridgeToTutor
     [SerializeField]
     private bool dynamicTutorialText = false;
 
+    [SerializeField]
+    private TutorialLogic tutorialLogic;
+
     [TextArea]
     [SerializeField]
     private string tutorialText = null;
+
+    private Animator animator;
+
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        this.animator = animator;
+
+        // ensure StateMachineAnimatorState is setup
+        base.OnStateEnter(animator, stateInfo, layerIndex);
+    }
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override protected void OnStateEntered()
@@ -30,11 +43,22 @@ public class StateChangesTutorial : StateMachineAnimatorState<StateBridgeToTutor
             stateMachine.GameOverCanvas.SetActive(false);
             stateMachine.TutorialText.text = tutorialText;
             stateMachine.TutorialManager.SetCurrentTutorial(tutorialId);
+
+            // notify TutorialBase, if it exists
+            tutorialLogic?.OnEnter(stateMachine);
         }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdated() { }
+    override protected void OnStateUpdated()
+    {
+        // TutorialBase controls exit, if it exists
+        bool isExit = tutorialLogic?.IsExitCondition(stateMachine) ?? false;
+        if (isExit)
+        {
+            animator.SetInteger("TutorialsFinished", tutorialId); // Animator transitions determine game state.
+        }
+    }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override protected void OnStateExited()
@@ -42,6 +66,9 @@ public class StateChangesTutorial : StateMachineAnimatorState<StateBridgeToTutor
         if (stateMachine.TutorialManager != null) // skip if Application.Quit or OnDestroy
         {
         }
+
+        // notify TutorialBase, if it exists
+        tutorialLogic?.OnExit(stateMachine);
 
         // memory cleanup
         if (dynamicTutorialText && GameManager.instance != null)

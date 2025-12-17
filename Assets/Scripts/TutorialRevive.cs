@@ -15,4 +15,18 @@ public class TutorialRevive : MonoBehaviour
     {
         return FlockToRevive.All(f => f.IsAlive);
     }
+
+    public void Enabled(bool enabled)
+    {
+        this?.gameObject.SetActive(enabled);
+        setDisabledDuringTutorial(false == enabled);
+    }
+
+    private void setDisabledDuringTutorial(bool enabled)
+    {
+        foreach (var item in DisabledDuringTutorial)
+        {
+            item.SetActive(enabled);
+        }
+    }
 }

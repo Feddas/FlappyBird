@@ -126,7 +126,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialId: 2
   dynamicTutorialText: 0
+  tutorialLogic: {fileID: 11400000, guid: aa20264b4ce1d7643841efd5cd4ca5e0, type: 2}
   tutorialText: Revive other members of the flock by flying over to them twice.
+--- !u!114 &-5987393623836102497
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a80750f3aa0c1b84ca42b4f41795d4b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-5205423620280284906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialId: 3
   dynamicTutorialText: 0
+  tutorialLogic: {fileID: 0}
   tutorialText: Flap a flock, of at least 2, through 2 obstacles.
 --- !u!1101 &-3971256228888047042
 AnimatorStateTransition:
@@ -284,6 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialId: 1
   dynamicTutorialText: 1
+  tutorialLogic: {fileID: 0}
   tutorialText: Use your join button to flap. Flap to go between thorns without touching
     them.
 --- !u!1107 &3931131191667845323

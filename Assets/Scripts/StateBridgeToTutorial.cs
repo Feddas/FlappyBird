@@ -7,6 +7,7 @@ public class StateBridgeToTutorial : StateMachineGameObject<StateBridgeToTutoria
     public GameObject GameOverCanvas;
     public TextMeshProUGUI TutorialText;
     public TutorialManager TutorialManager;
+    public TutorialRevive TutorialRevive;
 
     protected override void Awake()
     {
