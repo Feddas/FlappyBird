@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialId: 3
   dynamicTutorialText: 0
-  tutorialLogic: {fileID: 0}
+  tutorialLogic: {fileID: 11400000, guid: 1424103422a6168498956e4e6fee9f1d, type: 2}
   tutorialText: Flap a flock, of at least 2, through 2 obstacles.
 --- !u!1101 &-3971256228888047042
 AnimatorStateTransition:
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialId: 1
   dynamicTutorialText: 1
-  tutorialLogic: {fileID: 0}
+  tutorialLogic: {fileID: 11400000, guid: bfc0d936f06a28a4c99f0c8eeed479b3, type: 2}
   tutorialText: Use your join button to flap. Flap to go between thorns without touching
     them.
 --- !u!1107 &3931131191667845323

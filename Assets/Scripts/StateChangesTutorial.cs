@@ -42,7 +42,6 @@ public class StateChangesTutorial : StateMachineAnimatorState<StateBridgeToTutor
             // manipulate gameobject
             stateMachine.GameOverCanvas.SetActive(false);
             stateMachine.TutorialText.text = tutorialText;
-            stateMachine.TutorialManager.SetCurrentTutorial(tutorialId);
 
             // notify TutorialBase, if it exists
             tutorialLogic?.OnEnter(stateMachine);
@@ -53,8 +52,8 @@ public class StateChangesTutorial : StateMachineAnimatorState<StateBridgeToTutor
     override protected void OnStateUpdated()
     {
         // TutorialBase controls exit, if it exists
-        bool isExit = tutorialLogic?.IsExitCondition(stateMachine) ?? false;
-        if (isExit)
+        bool isSuccess = tutorialLogic?.IsExitCondition(stateMachine) ?? false;
+        if (isSuccess)
         {
             animator.SetInteger("TutorialsFinished", tutorialId); // Animator transitions determine game state.
         }
@@ -63,10 +62,6 @@ public class StateChangesTutorial : StateMachineAnimatorState<StateBridgeToTutor
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override protected void OnStateExited()
     {
-        if (stateMachine.TutorialManager != null) // skip if Application.Quit or OnDestroy
-        {
-        }
-
         // notify TutorialBase, if it exists
         tutorialLogic?.OnExit(stateMachine);
 
@@ -76,8 +71,16 @@ public class StateChangesTutorial : StateMachineAnimatorState<StateBridgeToTutor
             GameManager.instance.OnPlayerJoin -= GameManager_OnPlayerJoin;
         }
 
-        // "-" flags this tutorial as completed
-        stateMachine.TutorialManager.SetCurrentTutorial(-1 * tutorialId);
+        // Exit can occur from either the game being exited or the tutorial step successfully completed.
+        bool isSuccess = tutorialLogic?.IsExitCondition(stateMachine) ?? false;
+        if (isSuccess)
+        {
+            // cleanup for next tutorial or game
+            Score.instance.ResetScore();
+
+            // save progress
+            PlayerPrefs.SetInt(TutorialManager.PlayerPrefsTutorialKey, tutorialId);
+        }
     }
 
     private void GameManager_OnPlayerJoin()
