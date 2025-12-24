@@ -1,14 +1,14 @@
-using System;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class TutorialManager : MonoBehaviour
 {
     public const string PlayerPrefsTutorialKey = "TutorialsFinished";
 
+    [SerializeField]
+    [Tooltip("Animator that is being used as a State Machine for the game")]
+    private Animator stateMachine;
+
     public GameObject Scores;
-    public event Action<int> OnFinishedTutorial;
 
     public int CurrentTutorialId { get; private set; }
 
@@ -18,6 +18,7 @@ public class TutorialManager : MonoBehaviour
         if (PlayerPrefs.HasKey(PlayerPrefsTutorialKey))
         {
             completedTutorialId = PlayerPrefs.GetInt(PlayerPrefsTutorialKey);
+            stateMachine.SetInteger("TutorialsFinished", completedTutorialId); // Animator transitions determine game state.
         }
         bool hasStartedTutorial = completedTutorialId > 0;
         bool hasFinishedTutorials = completedTutorialId > 2;
@@ -26,18 +27,19 @@ public class TutorialManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        if (hasStartedTutorial && OnFinishedTutorial != null)
-        {
-            OnFinishedTutorial(completedTutorialId);
-        }
         else
         {
             Scores.SetActive(false);
         }
     }
 
-    // step 4 is: Set HasCompletedTutorial to true.
-    private void FinishTutorial()
+    /// <summary> Called by click event on UI button. </summary>
+    public void SkipTutorial()
+    {
+        PlayerPrefs.SetInt(TutorialManager.PlayerPrefsTutorialKey, 4);
+    }
+
+    public void OnTutorialFinished()
     {
         Debug.Log($"TUTORIAL FINISHED!");
         Scores.SetActive(true);

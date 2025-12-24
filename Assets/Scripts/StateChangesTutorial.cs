@@ -55,6 +55,13 @@ public class StateChangesTutorial : StateMachineAnimatorState<StateBridgeToTutor
         bool isSuccess = tutorialLogic?.IsExitCondition(stateMachine) ?? false;
         if (isSuccess)
         {
+            // cleanup for next tutorial or game
+            Score.instance.ResetScore();
+
+            // save progress
+            PlayerPrefs.SetInt(TutorialManager.PlayerPrefsTutorialKey, tutorialId);
+
+            // exit animator state
             animator.SetInteger("TutorialsFinished", tutorialId); // Animator transitions determine game state.
         }
     }
@@ -62,25 +69,20 @@ public class StateChangesTutorial : StateMachineAnimatorState<StateBridgeToTutor
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override protected void OnStateExited()
     {
-        // notify TutorialBase, if it exists
-        tutorialLogic?.OnExit(stateMachine);
-
         // memory cleanup
         if (dynamicTutorialText && GameManager.instance != null)
         {
             GameManager.instance.OnPlayerJoin -= GameManager_OnPlayerJoin;
         }
 
-        // Exit can occur from either the game being exited or the tutorial step successfully completed.
-        bool isSuccess = tutorialLogic?.IsExitCondition(stateMachine) ?? false;
-        if (isSuccess)
+        // Handle player dying and restarting
+        if (stateMachine == null)
         {
-            // cleanup for next tutorial or game
-            Score.instance.ResetScore();
-
-            // save progress
-            PlayerPrefs.SetInt(TutorialManager.PlayerPrefsTutorialKey, tutorialId);
+            return;
         }
+
+        // notify TutorialBase, if it exists
+        tutorialLogic?.OnExit(stateMachine);
     }
 
     private void GameManager_OnPlayerJoin()

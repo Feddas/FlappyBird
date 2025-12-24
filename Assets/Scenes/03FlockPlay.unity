@@ -208,7 +208,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1015576260}
         m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
-        m_MethodName: FinishTutorial
+        m_MethodName: SkipTutorial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1240,6 +1240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6923045d012b2b47a61c53c158f593d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateMachine: {fileID: 1058918171}
   Scores: {fileID: 1243825501}
 --- !u!4 &1015576261
 Transform:
