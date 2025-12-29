@@ -35,11 +35,15 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        // TODO: CrazyGames branch
+        // save score
+        Score.instance.UpdateHighScore();
+
+        // reset
+        Time.timeScale = 0f;
+
+        // main menu UI
         _gameOverCanvas.SetActive(true);
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(_playButton.gameObject);
-
-        Time.timeScale = 0f;
     }
 
     public void RestartGame()

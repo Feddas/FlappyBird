@@ -28,12 +28,11 @@ public class Score : MonoBehaviour
 
     private void Start()
     {
-        _currentScoreText.text = score.ToString();
+        ResetScore();
         _highScoreText.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
-        UpdateHighScore();
     }
 
-    private void UpdateHighScore()
+    public void UpdateHighScore()
     {
         if (score > PlayerPrefs.GetInt("HighScore"))
         {
