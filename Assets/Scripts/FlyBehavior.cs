@@ -22,12 +22,12 @@ public class FlyBehavior : MonoBehaviour
     {
         if (inputValue.isPressed)
         {
-            rigidbody.velocity = Vector2.up * _velocity;
+            rigidbody.linearVelocity = Vector2.up * _velocity;
         }
     }
 
     private void FixedUpdate()
     {
-        transform.rotation = Quaternion.Euler(0, 0, rigidbody.velocity.y * _rotationSpeed);
+        transform.rotation = Quaternion.Euler(0, 0, rigidbody.linearVelocity.y * _rotationSpeed);
     }
 }

@@ -65,7 +65,7 @@ public class Invulnerable : MonoBehaviour
                     minInvulnerableHeight,
                     transform.position.z);
 
-                rigidbody.velocity = Vector2.zero;
+                rigidbody.linearVelocity = Vector2.zero;
             }
             yield return null;
         }
