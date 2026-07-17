@@ -19,6 +19,9 @@ public class PlayerHealth : MonoBehaviour
     [Tooltip("Manages invulnerable state")]
     [SerializeField] private Invulnerable invulnerable;
 
+    [Tooltip("Layer player is in while IsAlive. Layer that doesn't collide with itself in Layer Collision Matrix")]
+    [SerializeField] private int physicsLayerOnAlive = 6;
+
     /// <summary> The skull. Shows how un-revived the player is. </summary>
     private SpriteRenderer spriteRenderer
     {
@@ -41,6 +44,7 @@ public class PlayerHealth : MonoBehaviour
         if (rigidbody != null)
         {
             rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+            rigidbody.gameObject.layer = 0;
         }
         Dirty();
 
@@ -57,6 +61,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (revived >= 1)
         {
+            Debug.LogWarning("Resurrect was called on a player that was already alive");
             return;
         }
 
@@ -86,12 +91,13 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 
-        if (revived >= 1) // player is alive
+        if (revived >= 1 && spriteRenderer.enabled) // player just changed from dead to alive
         {
             spriteRenderer.enabled = false;
             if (rigidbody != null)
             {
                 rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
+                rigidbody.gameObject.layer = physicsLayerOnAlive;
             }
             invulnerable.Trigger();
         }
