@@ -104,9 +104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d95186f53f934f4f9533355a4fcc2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  revived: 1
+  reviveProgress: 1
   rigidbody: {fileID: 8136785838831754251}
   invulnerable: {fileID: 5285213931874076725}
+  physicsLayerOnAlive: 6
 --- !u!1 &4747890356449916157
 GameObject:
   m_ObjectHideFlags: 0

@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: rigidbody
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6810807942631584041, guid: 527535d2a8bc14d4684d2081e1ed01ca, type: 3}
+      propertyPath: reviveProgress
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2067021500891049225, guid: 527535d2a8bc14d4684d2081e1ed01ca, type: 3}
     - {fileID: 8489751161426336244, guid: 527535d2a8bc14d4684d2081e1ed01ca, type: 3}
