@@ -49,7 +49,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 553029607496934500, guid: 1152298fe8265704a9facd66a86f13bf, type: 3}
       propertyPath: m_ControlPath
-      value: <Keyboard>/ctrl
+      value: <Keyboard>/leftCtrl
       objectReference: {fileID: 0}
     - target: {fileID: 2502284719640545618, guid: 1152298fe8265704a9facd66a86f13bf, type: 3}
       propertyPath: m_Pivot.x

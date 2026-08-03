@@ -40,7 +40,7 @@ public class Invulnerable : MonoBehaviour
     /// This is called by the animator's invulnerable state by using a StateMachineBehaviour </summary>
     public void FixHeight()
     {
-        if (transform.position.y < minInvulnerableHeight)
+        if (transform != null && transform.position.y < minInvulnerableHeight)
         {
             transform.position = new Vector3(
                 transform.position.x,
