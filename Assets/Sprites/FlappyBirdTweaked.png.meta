@@ -145,7 +145,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mobile - Flappy Bird - Version 12 Sprites_1
+      name: Pipe1
       rect:
         serializedVersion: 2
         x: 56
@@ -167,7 +167,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mobile - Flappy Bird - Version 12 Sprites_2
+      name: Pipe2
       rect:
         serializedVersion: 2
         x: 84
@@ -395,7 +395,7 @@ TextureImporter:
         width: 52
         height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 4, y: 5, z: 4, w: 4}
       customData: 
       outline: []
@@ -426,15 +426,15 @@ TextureImporter:
       Dead: -1674921007
       Ground: 603150854
       Mobile - Flappy Bird - Version 12 Sprites_0: -1233131591
-      Mobile - Flappy Bird - Version 12 Sprites_1: 730204179
       Mobile - Flappy Bird - Version 12 Sprites_10: 1046490519
-      Mobile - Flappy Bird - Version 12 Sprites_2: 964915650
       Mobile - Flappy Bird - Version 12 Sprites_3: -2099846957
       Mobile - Flappy Bird - Version 12 Sprites_4: -1586972304
       Mobile - Flappy Bird - Version 12 Sprites_5: -1333815550
       Mobile - Flappy Bird - Version 12 Sprites_6: -350130249
       Mobile - Flappy Bird - Version 12 Sprites_8: -1197648347
       Mobile - Flappy Bird - Version 12 Sprites_9: -1602848642
+      Pipe1: 730204179
+      Pipe2: 964915650
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
