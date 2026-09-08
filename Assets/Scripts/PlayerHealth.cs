@@ -114,12 +114,28 @@ public class PlayerHealth : MonoBehaviour
     {
         spriteRenderer.enabled = false;
         setConstraintsAndPhysicsLayer(RigidbodyConstraints2D.FreezePositionX, physicsLayerOnAlive);
+
+        // unstretch player from across the width of all player columns
+        setXscale(this.transform.parent, 1);
+        setXscale(this.transform, 1);
     }
 
     private void setDead()
     {
         spriteRenderer.enabled = true;
         setConstraintsAndPhysicsLayer(RigidbodyConstraints2D.FreezeAll, physicslayer: 0);
+
+        // stretch player across the width of all player columns
+        float scalePlayerColumns = 0.7f + (UnityEngine.InputSystem.PlayerInput.all.Count * 0.3f); // 0.7 removes the need to use (playercount - 1)
+        setXscale(this.transform.parent, scalePlayerColumns);
+        setXscale(this.transform, 1 / scalePlayerColumns);
+    }
+
+    private void setXscale(Transform targetTransform, float newX)
+    {
+        var updatableVector = targetTransform.localScale;
+        updatableVector.x = newX;
+        targetTransform.localScale = updatableVector;
     }
 
     private void setConstraintsAndPhysicsLayer(RigidbodyConstraints2D constraints, int physicslayer)
