@@ -6,7 +6,7 @@ namespace FlappyFlock
 {
     /// <summary> Positions players when <seealso cref="PlayerInputManager"/> SendMessages <seealso cref="OnPlayerJoined"/> </summary>
     [RequireComponent(typeof(PlayerInputManager))]
-    public class PositionOnJoin : MonoBehaviour
+    public class OnJoinPosition : MonoBehaviour
     {
         [Tooltip("Position of the first player to join")]
         [SerializeField] private Vector3 startPostion;
