@@ -1295,6 +1295,7 @@ GameObject:
   - component: {fileID: 1058918169}
   - component: {fileID: 1058918171}
   - component: {fileID: 1058918170}
+  - component: {fileID: 1058918172}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1413,6 +1414,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1058918172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058918166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5d3d35a0606e54587fee5d4c2b92ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlappyFlock.PositionOnJoin
+  startPostion: {x: 0, y: 0, z: 0}
+  incrementDelta: {x: 0.05, y: 0, z: 0}
+  oscillate: 1
 --- !u!1 &1070332022
 GameObject:
   m_ObjectHideFlags: 0
