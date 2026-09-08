@@ -8,7 +8,7 @@
 - Go to [the WebGL build](https://Feddas.github.io/FlappyBird).
 - Time flaps to stay between the pipes.
 - Touch dead allies twice to revive them.
-- (recommended) Max 4 players.
+- 2 to 8+ players (4 players recommended).
 
 # 🎮 Controls
 - Keyboard: Left Ctrl, Spacebar, Right Ctrl/Enter, Numpad enter
