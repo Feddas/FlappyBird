@@ -7,12 +7,14 @@ public class GameManager : MonoBehaviour
     // Start the game at half speed. (speed reaches 1 as score increments)
     public const float TimeScaleAtStart = 0.5f;
 
-    [SerializeField] private GameObject _gameOverCanvas;
-    [SerializeField] private UnityEngine.UI.Button _playButton;
-
     public static GameManager instance;
 
     public event Action OnPlayerJoin;
+
+    // Unity Inspector fields
+    public GameManagerAudio Audio;
+    [SerializeField] private GameObject _gameOverCanvas;
+    [SerializeField] private UnityEngine.UI.Button _playButton;
 
     private void Awake()
     {
@@ -35,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        Audio.PlaySfx(SfxClip.Gameover);
+
         // save score
         Score.instance.UpdateHighScore();
 
@@ -46,6 +50,7 @@ public class GameManager : MonoBehaviour
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(_playButton.gameObject);
     }
 
+    /// <summary> Called by OnClick from the PlayButton and the SkipTutorial button </summary>
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

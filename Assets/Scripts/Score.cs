@@ -43,6 +43,7 @@ public class Score : MonoBehaviour
 
     public void IncrementScore()
     {
+        GameManager.instance.Audio.PlaySfx(SfxClip.Point);
         setScore(++score);
     }
 

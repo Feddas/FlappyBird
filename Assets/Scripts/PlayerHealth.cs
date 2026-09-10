@@ -91,6 +91,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (reviveProgress >= 1 && lastReviveProgress < 1) // player just changed from dead to alive
         {
+            GameManager.instance.Audio.PlaySfx(SfxClip.Revived);
             setAlive();
             invulnerable.Trigger();
             lastReviveProgress = reviveProgress;
@@ -106,6 +107,10 @@ public class PlayerHealth : MonoBehaviour
             {
                 setDead();
                 lastReviveProgress = reviveProgress;
+            }
+            else if (reviveProgress > lastReviveProgress)
+            {
+                GameManager.instance.Audio.PlaySfx(SfxClip.Heal);
             }
         }
     }
