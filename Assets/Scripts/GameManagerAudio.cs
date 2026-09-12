@@ -8,18 +8,18 @@ public enum SfxClip { Flap, Gameover, Heal, Point, Revived }
 [RequireComponent(typeof(AudioSource))]
 public class GameManagerAudio : MonoBehaviour
 {
-    private AudioSource audioSource
-    {
-        get
-        {
-            if (_audioSource == null)
-            {
-                _audioSource = this.GetComponent<AudioSource>();
-            }
-            return _audioSource;
-        }
-    }
-    private AudioSource _audioSource;
+    private AudioSource audioSource;
+    //{
+    //    get
+    //    {
+    //        if (_audioSource == null)
+    //        {
+    //            _audioSource = this.GetComponent<AudioSource>();
+    //        }
+    //        return _audioSource;
+    //    }
+    //}
+    //private AudioSource _audioSource;
 
     [Serializable]
     public struct SfxClips
@@ -35,16 +35,11 @@ public class GameManagerAudio : MonoBehaviour
     [Tooltip("All sound effect audio clips used in this game")]
     private SfxClips sfxClip;
 
-    private IEnumerator Start()
+    // https://discussions.unity.com/t/no-sound-clips-in-webgl-build/819174/14
+    // check build log for .wav, AudioClip, and ffmpeg %LOCALAPPDATA%\Unity\Editor\Editor.log
+    private void Awake()
     {
-        // handle Unity's bug "UnassignedReferenceException: The variable '' has not been assigned." https://discussions.unity.com/t/the-variable-has-not-been-assigned-but-it-has/94274/11
-        //yield return new WaitUntil(() => audioSource != null);
-
-        while (audioSource == null)
-        {
-            Debug.LogError("audioSource still null");
-            yield return null;
-        }
+        audioSource = this.GetComponent<AudioSource>(); // note: not using GetComponent in property setter due to not working in WebGL builds
     }
 
     public void PlaySfx(SfxClip clip)
