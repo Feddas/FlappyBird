@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -46,7 +47,15 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
 
         // main menu UI
+        StartCoroutine(ShowGameoverUi());
+    }
+
+    IEnumerator ShowGameoverUi()
+    {
         _gameOverCanvas.SetActive(true);
+
+        // focus play button so space bar is initalized to click that play button
+        yield return null;
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(_playButton.gameObject);
     }
 

@@ -2592,6 +2592,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1130144602459083600, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: OnPrefLoadedBool.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130144602459083600, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: OnPrefLoadedBool.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 311734548}
+    - target: {fileID: 1130144602459083600, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: OnPrefLoadedBool.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130144602459083600, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: OnPrefLoadedBool.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ToggleAudioMuted
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130144602459083600, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: OnPrefLoadedBool.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: GameManagerAudio, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130144602459083600, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: OnPrefLoadedBool.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2091980216935073151, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2680,6 +2704,62 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1058918167}
+    - target: {fileID: 6770582849130984167, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770582849130984167, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770582849130984167, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 311734548}
+    - target: {fileID: 6770582849130984167, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770582849130984167, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleAudioMuted
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770582849130984167, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManagerAudio, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770582849130984167, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809773568058816996, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809773568058816996, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809773568058816996, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 311734548}
+    - target: {fileID: 8809773568058816996, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809773568058816996, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleAudioMuted
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809773568058816996, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManagerAudio, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809773568058816996, guid: 1266bda1ebf24ee4b9f462c0b1028d69, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

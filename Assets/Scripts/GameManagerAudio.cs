@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum SfxClip { Flap, Gameover, Heal, Point, Revived }
 
@@ -8,19 +9,6 @@ public enum SfxClip { Flap, Gameover, Heal, Point, Revived }
 [RequireComponent(typeof(AudioSource))]
 public class GameManagerAudio : MonoBehaviour
 {
-    private AudioSource audioSource;
-    //{
-    //    get
-    //    {
-    //        if (_audioSource == null)
-    //        {
-    //            _audioSource = this.GetComponent<AudioSource>();
-    //        }
-    //        return _audioSource;
-    //    }
-    //}
-    //private AudioSource _audioSource;
-
     [Serializable]
     public struct SfxClips
     {
@@ -34,16 +22,37 @@ public class GameManagerAudio : MonoBehaviour
     [SerializeField]
     [Tooltip("All sound effect audio clips used in this game")]
     private SfxClips sfxClip;
+    private AudioSource audioSource;
 
     // https://discussions.unity.com/t/no-sound-clips-in-webgl-build/819174/14
     // check build log for .wav, AudioClip, and ffmpeg %LOCALAPPDATA%\Unity\Editor\Editor.log
     private void Awake()
     {
         audioSource = this.GetComponent<AudioSource>(); // note: not using GetComponent in property setter due to not working in WebGL builds
+
+        if (PlayerPrefs.HasKey(PlayerPref.Of[PlayerPref.Key.AudioMuted].Key))
+        {
+            var isMuted = PlayerPrefs.GetInt(PlayerPref.Of[PlayerPref.Key.AudioMuted].Key) == 1;
+            audioSource.enabled = false == isMuted;
+        }
+    }
+
+    public void ToggleAudioMuted(bool isMuted)
+    {
+        PlayerPrefs.SetInt(PlayerPref.Of[PlayerPref.Key.AudioMuted].Key, isMuted ? 1 : 0);
+        audioSource.enabled = false == isMuted;
+
+        // HACK: The toggle UI is toggled again if the player causes it to lose focus. Workaround, lose focus via the line below in this script instead.
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void PlaySfx(SfxClip clip)
     {
+        if (false == audioSource.enabled)
+        {
+            return;
+        }
+
         switch (clip)
         {
             case SfxClip.Flap:
