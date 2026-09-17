@@ -34,9 +34,9 @@ public class StateChangesTutorial : StateMachineAnimatorState<StateBridgeToTutor
     {
         if (tutorialId > 0)
         {
-            if (dynamicTutorialText && GameManager.instance != null)
+            if (dynamicTutorialText && GameManager.Instance != null)
             {
-                GameManager.instance.OnPlayerJoin += GameManager_OnPlayerJoin;
+                GameManager.Instance.OnPlayerJoin += GameManager_OnPlayerJoin;
             }
 
             // manipulate gameobject
@@ -70,9 +70,9 @@ public class StateChangesTutorial : StateMachineAnimatorState<StateBridgeToTutor
     override protected void OnStateExited()
     {
         // memory cleanup
-        if (dynamicTutorialText && GameManager.instance != null)
+        if (dynamicTutorialText && GameManager.Instance != null)
         {
-            GameManager.instance.OnPlayerJoin -= GameManager_OnPlayerJoin;
+            GameManager.Instance.OnPlayerJoin -= GameManager_OnPlayerJoin;
         }
 
         // Handle player dying and restarting
@@ -92,7 +92,7 @@ public class StateChangesTutorial : StateMachineAnimatorState<StateBridgeToTutor
             return;
         }
 
-        GameManager.instance.StartCoroutine(InsertPlayerControls());
+        GameManager.Instance.StartCoroutine(InsertPlayerControls());
     }
 
     /// <summary>

@@ -48,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
         bool allPlayersDead = UnityEngine.InputSystem.PlayerInput.all.All(p => p.GetComponentInChildren<PlayerHealth>().IsDead);
         if (allPlayersDead)
         {
-            GameManager.instance.GameOver();
+            GameManager.Instance.GameOver();
         }
     }
 
@@ -91,7 +91,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (reviveProgress >= 1 && lastReviveProgress < 1) // player just changed from dead to alive
         {
-            GameManager.instance.Audio.PlaySfx(SfxClip.Revived);
+            GameManagerAudio.Instance.PlaySfx(SfxClip.Revived);
             setAlive();
             invulnerable.Trigger();
             lastReviveProgress = reviveProgress;
@@ -110,7 +110,7 @@ public class PlayerHealth : MonoBehaviour
             }
             else if (reviveProgress > lastReviveProgress)
             {
-                GameManager.instance.Audio.PlaySfx(SfxClip.Heal);
+                GameManagerAudio.Instance.PlaySfx(SfxClip.Heal);
             }
         }
     }

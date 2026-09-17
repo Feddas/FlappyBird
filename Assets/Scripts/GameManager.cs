@@ -8,20 +8,19 @@ public class GameManager : MonoBehaviour
     // Start the game at half speed. (speed reaches 1 as score increments)
     public const float TimeScaleAtStart = 0.5f;
 
-    public static GameManager instance;
+    public static GameManager Instance;
 
     public event Action OnPlayerJoin;
 
     // Unity Inspector fields
-    public GameManagerAudio Audio;
     [SerializeField] private GameObject _gameOverCanvas;
     [SerializeField] private UnityEngine.UI.Button _playButton;
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
 
         Time.timeScale = TimeScaleAtStart;
@@ -38,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Audio.PlaySfx(SfxClip.Gameover);
+        GameManagerAudio.Instance.PlaySfx(SfxClip.Gameover);
 
         // save score
         Score.instance.UpdateHighScore();

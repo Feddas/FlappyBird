@@ -19,6 +19,8 @@ public class GameManagerAudio : MonoBehaviour
         public AudioClip Revived;
     }
 
+    public static GameManagerAudio Instance;
+
     [SerializeField]
     [Tooltip("All sound effect audio clips used in this game")]
     private SfxClips sfxClip;
@@ -28,9 +30,14 @@ public class GameManagerAudio : MonoBehaviour
     // check build log for .wav, AudioClip, and ffmpeg %LOCALAPPDATA%\Unity\Editor\Editor.log
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
         audioSource = this.GetComponent<AudioSource>(); // note: not using GetComponent in property setter due to not working in WebGL builds
 
-        if (PlayerPrefs.HasKey(PlayerPref.Of[PlayerPref.Key.AudioMuted].Key))
+        if (audioSource != null && PlayerPrefs.HasKey(PlayerPref.Of[PlayerPref.Key.AudioMuted].Key))
         {
             var isMuted = PlayerPrefs.GetInt(PlayerPref.Of[PlayerPref.Key.AudioMuted].Key) == 1;
             audioSource.enabled = false == isMuted;
@@ -39,6 +46,12 @@ public class GameManagerAudio : MonoBehaviour
 
     public void ToggleAudioMuted(bool isMuted)
     {
+        if (audioSource == null)
+        {
+            Debug.LogWarning("audioSource null in ToggleAudioMuted");
+            return;
+        }
+
         PlayerPrefs.SetInt(PlayerPref.Of[PlayerPref.Key.AudioMuted].Key, isMuted ? 1 : 0);
         audioSource.enabled = false == isMuted;
 

@@ -22,7 +22,7 @@ public class FlyBehavior : MonoBehaviour
     {
         if (inputValue.isPressed)
         {
-            GameManager.instance.Audio.PlaySfx(SfxClip.Flap);
+            GameManagerAudio.Instance.PlaySfx(SfxClip.Flap);
             rigidbody.linearVelocity = Vector2.up * _velocity;
         }
     }
