@@ -29,21 +29,24 @@ public class StateTutorialFlock : TutorialLogic
 
     private bool atLeast2PlayersAlive()
     {
+        // at least 2 players are active. dead players also count
         int playersActive = PlayerInput.all.Count;
-        if (playersActive < 2)            // Need at least 2 players for this Tutorial step
+        if (playersActive < 2) // Failed, need at least 2 players active for this Tutorial step
         {
             Score.instance.ResetScore();
             return false;
         }
 
+        // how many players are alive. dead players do NOT count
         int playersAlive = PlayerInput.all.Count(p => isAlive(p));
         int score = Score.instance.CurrentScore;
-        if (playersAlive < playersActive) // All players in the flock need to stay alive
+        if (playersAlive < 2) // Failed, less than 2 players in the flock are alive
         {
             Score.instance.ResetScore();
             return false;
         }
 
+        // At least 2 players in the flock stayed alive
         return true;
     }
 
